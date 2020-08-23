@@ -20,13 +20,13 @@ void setup() {
   digitalWrite(SCL_PIN, HIGH);
   digitalWrite(SEL_PIN, LOW);
   digitalWrite(NSL_PIN, HIGH);
-  delay(5);  // Holds NSL high for > 3 ms upon power up
+  delay(3);  // Holds NSL high for > 3 ms upon power up
 }
 
 void loop() {
-  // Select must be held high for 1 ms to switch between SPI and SSI mode
+  // Select must be held high for 1 μs to switch between SPI and SSI mode
   digitalWrite(SEL_PIN, HIGH);
-  delayMicroseconds(2);
+  delayMicroseconds(1);
   digitalWrite(NSL_PIN, LOW);
 
   unsigned long data = 0;  //? Could be switched to an unsigned 16 bit integer
@@ -37,12 +37,14 @@ void loop() {
     // Modulate the clock pin once to prepare to read in a new bit
     digitalWrite(SCL_PIN, LOW);
     delayMicroseconds(1);
+
+    //! The data sheet recommends reading from the SSI falling edge
+    data |= digitalRead(DO_PIN);  // Bitwise OR the new bit to add it to the end of the absolute reading
+    
     digitalWrite(SCL_PIN, HIGH);
     delayMicroseconds(1);
-
-    data |= digitalRead(DO_PIN);  // Bitwise OR the new bit to add it to the end of the absolute reading
   }
-  Serial.println(data); //todo: The readings repeat after a half turn, need to further look into
+  Serial.println(data);
 
   delayMicroseconds(1);
   digitalWrite(NSL_PIN, HIGH);  // Return to a high state to prepare for next reading
