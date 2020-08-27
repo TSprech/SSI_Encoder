@@ -8,6 +8,8 @@
 #define SCL_PIN 5    // SSI clock input
 #define BIT_COUNT 16 // Encoder packet size / resolution
 
+#define NOP __asm__ __volatile__("nop\n\t")
+
 int fastDigitalRead(uint32_t ulPin)
 {
   return (PORT->Group[g_APinDescription[ulPin].ulPort].IN.reg & (1ul << g_APinDescription[ulPin].ulPin)) != 0;
@@ -54,20 +56,48 @@ void loop()
 
   unsigned long data = 0; //? Could be switched to an unsigned 16 bit integer
 
+  unsigned long time = micros();
+
   //todo: switch from a delay model to using some sort of timer or single clock cycle delay based on F_CPU
-  for (int i = 0; i < BIT_COUNT; i++)
+  for (uint8_t i = 0; i < BIT_COUNT; i++)
   {
     data <<= 1; // Bitshift the data right to prepare to read the next bit
     // Modulate the clock pin once to prepare to read in a new bit
     fastDigitalWrite(SCL_PIN, 0);
-    delayMicroseconds(1);
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
 
     //! The data sheet recommends reading from the SSI falling edge
     data |= fastDigitalRead(DO_PIN); // Bitwise OR the new bit to add it to the end of the absolute reading
 
     fastDigitalWrite(SCL_PIN, 1);
-    delayMicroseconds(1);
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
+    NOP;
   }
+
+  time = micros() - time;
+
+  Serial.println(time);
 
   Serial.println(data);
 
