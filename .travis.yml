@@ -9,6 +9,7 @@ cache:
 
 env:
     - PLATFORMIO_CI_SRC=include/AEAT8800.h
+    - PLATFORMIO_CI_SRC=examples/ReadDegrees.cpp
 
 install:
     - pip install -U platformio
