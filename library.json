@@ -1,0 +1,20 @@
+{
+    "name": "AEAT8800",
+    "version": "1.0.0",
+    "description": "A library for reading the absolute postion of an AEAT8800 sensor over SSI",
+    "keywords": "aeat8800, encoder",
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/username/hello-world.git"
+    },
+    "authors":
+    [
+      {
+        "name": "Trey Sprecher",
+      }
+    ],
+    "license": "MIT",
+    "frameworks": "*",
+    "platforms": "*"
+  }

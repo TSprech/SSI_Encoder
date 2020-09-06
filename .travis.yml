@@ -8,14 +8,11 @@ cache:
         - "~/.platformio"
 
 env:
-    - PLATFORMIO_CI_SRC=lib/AEAT8800.h
-    - PLATFORMIO_CI_SRC=examples/ReadRadians.cpp
-    - PLATFORMIO_CI_SRC=examples/ReadDegrees.cpp
-    # - PLATFORMIO_CI_SRC=path/to/test/directory
+    - PLATFORMIO_CI_SRC=include/AEAT8800.h
 
 install:
     - pip install -U platformio
     - platformio update
 
 script:
-    - platformio ci --lib="." --teensylc
+    - platformio ci --lib="." --board=teensylc
