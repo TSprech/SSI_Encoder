@@ -1,0 +1,21 @@
+language: python
+python:
+    - "2.7"
+
+sudo: false
+cache:
+    directories:
+        - "~/.platformio"
+
+env:
+    - PLATFORMIO_CI_SRC=examples/ReadDegrees.cpp
+    - PLATFORMIO_CI_SRC=examples/ReadErrorAbsolute.cpp
+    - PLATFORMIO_CI_SRC=examples/ReadRadians.cpp
+    - PLATFORMIO_CI_SRC=examples/ReadRadiansOffset.cpp
+
+install:
+    - pip install -U platformio
+    - platformio update
+
+script:
+    - platformio ci --lib="." --board=teensylc --board=uno --board=adafruit_grandcentral_m4
