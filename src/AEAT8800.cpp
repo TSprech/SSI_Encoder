@@ -45,7 +45,7 @@ void AEAT8800::Read() {
 
     //! The data sheet recommends reading from the SSI falling edge
     input_bit = digitalRead(do_pin);
-    
+
     // Skip on last iteration to avoid inverting on the parity bit
     // Everytime a 1 is read, parity_check inverts to indicate an odd or even parity
     if (input_bit && (lcv < bit_count + 3)) {
@@ -107,6 +107,14 @@ float AEAT8800::GetRadians(int32_t offset) {
   }
 }
 
+float AEAT8800::GetRadiansRad(float offset) {
+  if (valid_data) {
+    return ((absolute_rotation * ((2 * PI) / 65536)) + offset);
+  } else {
+    return -1;
+  }
+}
+
 float AEAT8800::GetDegrees() {
   if (valid_data) {
     return (absolute_rotation * (360 / 65536));
@@ -125,23 +133,13 @@ float AEAT8800::GetDegrees(int32_t offset) {
   }
 }
 
-//! Uncomment the code below if the offset being passed is given in radian instead of absolute encoder ticks
-// float AEAT8800::GetRadians(float offset) {
-//   if (valid_data) {
-//     return ((absolute_rotation * ((2 * PI) / 65536)) + offset);
-//   } else {
-//     return -1;
-//   }
-// }
-
-//! Uncomment the code below if the offset being passed is given in degrees instead of absolute encoder ticks
-// float AEAT8800::GetDegrees(float offset) {
-//   if (valid_data) {
-//     return ((absolute_rotation * (360 / 65536)) + offset);
-//   } else {
-//     return -1;
-//   }
-// }
+float AEAT8800::GetDegreesDeg(float offset) {
+  if (valid_data) {
+    return ((absolute_rotation * (360 / 65536)) + offset);
+  } else {
+    return -1;
+  }
+}
 
 bool AEAT8800::GetMHE() {
   return magnet_high_error;

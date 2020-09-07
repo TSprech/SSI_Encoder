@@ -18,4 +18,4 @@ install:
     - platformio update
 
 script:
-    - platformio ci --lib="." --board=teensylc
+    - platformio ci --lib="." --board=teensylc --board=uno --board=adafruit_grandcentral_m4

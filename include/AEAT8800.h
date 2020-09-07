@@ -34,14 +34,12 @@ class AEAT8800 {
   //! The get functions below will return -1 if there is an error
   int32_t GetRawReading();                // Returns the raw value from 0-65536
   int32_t GetRawReading(int32_t offset);  // Returns the raw value + offset from 0-65536
-  float GetRadians();                     // Returns radian value from 0-2π
-  float GetRadians(int32_t offset);       // Returns radian value + offset from 0-2π
-  float GetDegrees();                     // Returns degree value from 0-360°
-  float GetDegrees(int32_t offset);       // Returns degree value + offset from 0-360°
-
-  //* These functions can be substituted if the offset will be given in the units being returned
-  //float GetRadians(float offset); //* See notes in associated cpp file
-  //float GetDegrees(float offset); //* See notes in associated cpp file
+  float GetRadians();                     // Returns radian value, range 0-2π
+  float GetRadians(int32_t offset);       // Returns radian value with offset added to raw, range 0-2π
+  float GetRadiansRad(float offset);         // Returns radian value + offset, range 0-2π 
+  float GetDegrees();                     // Returns degree value, range 0-360°
+  float GetDegrees(int32_t offset);       // Returns degree value with offset added to raw, range 0-360°
+  float GetDegreesDeg(float offset);         // Returns degree value + offset, range 0-360°
 
   bool GetMHE();     // Returns true if the magnet strength is too strong, resolve with a weaker magnet or increasing distance
   bool GetMLE();     // Returns true if the magnet strength is too weak, resolve with a stronger magnet or decreasing distance
