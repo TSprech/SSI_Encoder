@@ -1,3 +1,12 @@
+/* Copyright 2020 Trey Sprecher. All Rights Reserved.
+
+Licensed under the MIT License, (the "License");
+you may not use this file except in compliance with the License.
+
+Software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. */
+
 #include <Arduino.h>
 #ifndef AEAT8800_H
 #define AEAT8800_H
@@ -36,10 +45,10 @@ class AEAT8800 {
   int32_t GetRawReading(int32_t offset);  // Returns the raw value + offset from 0-65536
   float GetRadians();                     // Returns radian value, range 0-2π
   float GetRadians(int32_t offset);       // Returns radian value with offset added to raw, range 0-2π
-  float GetRadiansRad(float offset);         // Returns radian value + offset, range 0-2π 
+  float GetRadiansRad(float offset);      // Returns radian value + offset, range 0-2π
   float GetDegrees();                     // Returns degree value, range 0-360°
   float GetDegrees(int32_t offset);       // Returns degree value with offset added to raw, range 0-360°
-  float GetDegreesDeg(float offset);         // Returns degree value + offset, range 0-360°
+  float GetDegreesDeg(float offset);      // Returns degree value + offset, range 0-360°
 
   bool GetMHE();     // Returns true if the magnet strength is too strong, resolve with a weaker magnet or increasing distance
   bool GetMLE();     // Returns true if the magnet strength is too weak, resolve with a stronger magnet or decreasing distance

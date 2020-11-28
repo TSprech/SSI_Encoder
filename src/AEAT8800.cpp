@@ -1,3 +1,12 @@
+/* Copyright 2020 Trey Sprecher. All Rights Reserved.
+
+Licensed under the MIT License, (the "License");
+you may not use this file except in compliance with the License.
+
+Software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. */
+
 #include "AEAT8800.h"
 
 #include <Arduino.h>
