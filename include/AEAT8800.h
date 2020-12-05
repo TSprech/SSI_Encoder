@@ -7,6 +7,8 @@ Software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. */
 
+//TODO: Doxygen commenting
+
 #include <Arduino.h>
 #ifndef AEAT8800_H
 #define AEAT8800_H
@@ -16,7 +18,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. */
 //* This chip supports up to 10 Mhz SSI communication, if using a high clock speed mcu, this class would need to be edited
 
 class AEAT8800 {
- private:
+ private: //TODO: Add private variable suffix and rearrange with public
   uint8_t nsl_pin;     // SSI data input, yellow
   uint8_t sel_pin;     // SSI select pin, green
   uint8_t do_pin;      // SSI data output, white

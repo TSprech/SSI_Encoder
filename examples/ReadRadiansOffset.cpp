@@ -13,8 +13,8 @@ void setup() {
 
 void loop() {
   Encoder.Read();
-  // Note: Offset is given in raw encoder value, to change this, go to the AEAT8800 library
-  //files and uncomment indicated functions
-  Serial.println(Encoder.GetDegrees(16634));  // This will offset all readings by π/2
+  // Note: Offset is given in raw encoder value, to use radians/degrees, use either
+  // GetRadiansRad(offset) or GetDegreesDeg(offset)
+  Serial.println(Encoder.GetRadians(16634));  // This will offset all readings by π/2
   delay(500);                                 // Optional delay, to make serial monitor more managable
 }

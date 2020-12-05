@@ -37,6 +37,7 @@ bool AEAT8800::Begin() {
   return true;
 }
 
+//* This must be called to receive updated encoder values
 void AEAT8800::Read() {
   // Select must be held high for 1 μs to switch between SPI and SSI mode
   digitalWrite(sel_pin, HIGH);
@@ -68,6 +69,7 @@ void AEAT8800::Read() {
 
   digitalWrite(nsl_pin, HIGH);  // Return to a high state to prepare for next reading
 
+  //TODO: This could be condensed into ~2 lines
   if (parity_check == (raw_input & 1)) {
     absolute_rotation = raw_input >> 4;
     magnet_high_error = raw_input & 1000;
@@ -98,6 +100,7 @@ int32_t AEAT8800::GetRawReading(int32_t offset) {
   }
 }
 
+//TODO: Use a default value method as opposed to overloading?
 float AEAT8800::GetRadians() {
   if (valid_data) {
     return (absolute_rotation * ((2 * PI) / 65536));
@@ -150,6 +153,7 @@ float AEAT8800::GetDegreesDeg(float offset) {
   }
 }
 
+//TODO: Switch these from function naming system to variable naming system
 bool AEAT8800::GetMHE() {
   return magnet_high_error;
 }
